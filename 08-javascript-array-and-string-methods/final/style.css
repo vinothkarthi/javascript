@@ -20,3 +20,6 @@ body{
     background-color: #F5B041;
     text-align: center;
 }
+#pyramid, #stopwatch, #counter {
+    color: white;
+}

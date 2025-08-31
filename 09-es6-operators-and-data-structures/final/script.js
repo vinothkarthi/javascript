@@ -275,9 +275,11 @@ for(let prod of products){
 /**************************************************
  * UNDERSTANDING FOR-IN LOOP   ********************
  **************************************************/
-/*const colors = ['red', 'green', 'blue'];
+/* const colors = ['red', 'green', 'blue'];
 
 const product = {name: 'iPhone 15', price: 1299, color: 'black'}
+
+const str = 'Hello, world!';
 
 for(let key in product){
     console.log(key, product[key]);
@@ -286,15 +288,17 @@ for(let key in product){
 // for(let index in colors){
 //     console.log(index, colors[index]);
 // }
-*/
 
-
+// for(let index in str){
+//     console.log(index, str[index]);
+// }
+ */
 
 
 /**************************************************
  * ES6 ENHANCED OBJECT LITERAL SYNTAX   ***********
  **************************************************/
-/*const address = ['london', 'uk'];
+/* const address = ['london', 'uk'];
 const contact = {
     email: 'john@gmail.com',
     phone: 9980997067
@@ -311,24 +315,29 @@ const user = {
     calcAge(birthYear){
         //method body
     },
-    [address[0]]: '5'
+    [address[0]]: '5', // computed properties in object
+    [contact['phone']]: 'not found' // computed properties in object
 }
+// dynamically add a property
+let key1 = "city";
+user[key1] = "London";
 console.log(user);
-*/
+ */
 
 
 
 /**************************************************
  * ES6 SET DATA STRUCTURE   ***********************
  **************************************************/
-/*const mySet = new Set([1, 2, 3, 4, 2, 3]);
+const mySet = new Set([1, 2, 3, 4, 2, 3]);
 console.log(mySet);
 
-// const mixedSet = new Set([100, true, 'Hello', null, undefined, {name: 'john'}])
-// console.log(mixedSet);
+const mixedSet = new Set([100, true, 'Hello', null, undefined, {name: 'john'}])
+console.log(mixedSet);
+// console.log([...mixedSet][5]) // to access value from set
 
-// const strSet = new Set('hello');
-// console.log(strSet);
+const strSet = new Set('hello');
+console.log(strSet);
 
 const cities = new Set();
 cities.add('london');
@@ -338,14 +347,14 @@ cities.add('tokyo');
 
 console.log(cities);
 console.log(cities.size)
-*/
+
 
 
 
 /**************************************************
  * USE OF SET DATA STRUCTURE   ********************
  **************************************************/
-/*const arr = [1, 2, 3, 2, 5, 7, 4, 6, 7];
+/* const arr = [1, 2, 3, 2, 5, 7, 4, 6, 7];
 const arr1 = [1, 2, 3];
 const arr2 = [3, 4, 5];
 
@@ -379,7 +388,7 @@ const mySet = new Set(arr);
 console.log(mySet)
 mySet.delete(5)
 console.log(mySet)
-*/
+ */
 
 
 
@@ -388,25 +397,25 @@ console.log(mySet)
 /**************************************************
  * LOOPING OVER SETS   ****************************
  **************************************************/
-/*const mySet = new Set(['delhi', 'tokyo', 'london', 'berlin']);
+/* const mySet = new Set(['delhi', 'tokyo', 'london', 'berlin']);
 
 //FOR-OF LOOP
-// for(let value of mySet){
-//     console.log(value);
-// }
+for(let value of mySet){
+    console.log(value);
+}
 
 //FOREACH METHOD
-mySet.forEach(function(value, key, set){
-    console.log(value, key, set);
-});
-*/
+// mySet.forEach(function(value, key, set){
+//     console.log(value, key, set);
+// });
+ */
 
 
 
 /**************************************************
  * ES2025 NEW SET METHODS   ***********************
  **************************************************/
-/*const set1 = new Set([1, 2, 3]);
+/* const set1 = new Set([1, 2, 3]);
 const set2 = new Set([3, 4, 5]);
 
 //const union = new Set([...set1, ...set2]);
@@ -424,8 +433,8 @@ console.log(intersect);
 //     return !(new Set(set2).has(x))
 // })
 const difference = set1.difference(set2);
-console.log(difference);
-*/
+console.log(difference); */
+
 
 //NEW SET METHODS: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 
@@ -434,7 +443,7 @@ console.log(difference);
 /**************************************************
  * ES6 MAP DATA STRUCTURE   ***********************
  **************************************************/
-/*const myMap = new Map();
+/* const myMap = new Map();
 myMap.set('question', 'In which year ES6 was released?')
    .set(1, 2013)
    .set(2, 2015)
@@ -444,7 +453,7 @@ myMap.set('question', 'In which year ES6 was released?')
    .set(true, 'Correct Answer')
    .set(false, 'Wrong answer')
 
-//console.log(myMap);
+// console.log(myMap);
 
 function showQuestion(){
     console.log('MCQ Question')
@@ -460,22 +469,22 @@ function showQuestion(){
     const isCorrect = ans === myMap.get('correct');
     console.log(myMap.get(isCorrect))
 }
-//showQuestion();
+showQuestion();
 
 // console.log(myMap.size)
 // myMap.clear();
 // console.log(myMap);
 
 console.log(myMap.has('wrong'))
-*/
+ */
 
 
 
 /**************************************************
  * CREATE MAP FROM ARRAY & OBJECT   ***************
  **************************************************/
-/*const address = [
-    ['city', 'london', 123],
+/* const address = [
+    ['city', 'london', '123'],
     ['country', 'uk'],
     ['zip', 12345],
     ['street', 'XYZ Main Street']
@@ -490,13 +499,11 @@ const user = {
 }
 
 
-//console.log(objArray);
-
 //CREATE A MAP FROM ARRAY
-//const myMap = new Map(address);
-const objArray = Object.entries(user)
-
-const myMap = new Map(objArray);
+const myMap = new Map(address);
+// const objArray = Object.entries(user)
+// console.log(objArray);
+// const myMap = new Map(objArray); 
 console.log(myMap);
 
 
@@ -508,11 +515,11 @@ userMap.set('name', 'mark')
 
 console.log(userMap);
 
-// console.log([...userMap])
-// console.log([...userMap.keys()])
-// console.log([...userMap.values()])
-// console.log([...userMap.entries()])
-*/
+console.log([...userMap])
+console.log([...userMap.keys()])
+console.log([...userMap.values()])
+console.log([...userMap.entries()])
+ */
 
 
 
@@ -520,7 +527,7 @@ console.log(userMap);
  * LOOPING OVER MAP   *****************************
  **************************************************/
 const address = [
-    ['city', 'london'],
+    ['city', ['london','usa']],
     ['country', 'uk'],
     ['zip', 12345],
     ['street', 'XYZ Main Street']
@@ -530,6 +537,7 @@ const myMap = new Map(address);
 
 //FOR-OF LOOP
 // for(let element of myMap){
+//     console.log(element)
 //     console.log(`Key: ${element[0]}, value: ${element[1]}`);
 // }
 

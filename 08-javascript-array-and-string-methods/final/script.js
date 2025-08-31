@@ -96,6 +96,24 @@ let max = numbers.reduce((acc, el) => {
 console.log(max);
 */
 
+//Flatten array - one level
+/* let nested = [[1, 2], [3, 4], [5]];
+
+let flat = nested.reduce((acc, curr) => acc.concat(curr), []);
+
+console.log(flat)
+
+//Count occurrences
+let fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
+
+let count = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+
+console.log(count) */
+
+
 
 /**************************************************
  * ARRAY FOREACH METHOD   *************************
@@ -124,15 +142,15 @@ console.log(evenNumbers);
 /**************************************************
  * ARRAY SLICE & SPLICE METHOD   ******************
  **************************************************/
-/*const numbers = [7, 2, 10, 4, 8, 3, 12, 20];
+/* const numbers = [7, 2, 10, 4, 8, 3, 12, 20];
 
-//let extracted = numbers.slice(3, 5);
+// let extracted = numbers.slice(3, 5);
 
 let extracted = numbers.splice(1, 1, "a", "b");
 
 console.log(extracted);
-console.log(numbers);
-*/
+console.log(numbers); */
+
 
 
 
@@ -198,6 +216,57 @@ console.log(numbers)
 });
 console.log(sortedusers);
 console.log(users);*/
+
+/* let str = ["Vinoth","sathish","kumuhta","Thangapandi"]
+console.log(str.sort())
+str.sort((a,b)=> a.localeCompare(b,'en',{sensitivity: 'base'}))
+console.log(str)
+
+let mixed = ["10","Vinoth","2","kumutha"]
+mixed.sort((a,b)=> a.localeCompare(b,'en',{numeric:true}))
+console.log(mixed) */
+
+
+let num = [5,1,4,2]
+//Bubble Sort (key is j<n-i-1) // no need to check alredy sorted element
+function bubbleSort(arr) {
+    let n = arr.length
+    for(i=0;i<n-1;i++){
+        for(j=0;j<n-i-1;j++) {
+            if(arr[j]>arr[j+1]){
+                [arr[j],arr[j+1]] = [arr[j+1],arr[j]]
+                /* let tmp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = tmp */
+            }
+        }
+    }
+    return arr
+}
+
+console.log(bubbleSort(num))
+
+//Quick sort (key is if (arr.length <= 1)) // recursive - sub array length
+function quickSort(arr){
+    if (arr.length <= 1) return arr; //base case
+    let n = arr.length;
+    let pivot = arr[n-1]
+    let left =[], right = []
+    for(let i=0;i<n-1;i++) {
+        arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i])
+    }
+    return [...quickSort(left),pivot,...quickSort(right)]
+}
+
+console.log(quickSort(["vinoth","sathish","thangapandi","kumutha"]))
+
+function reverseArrayInPlace(arr,left = 0, right = arr.length-1){
+    if(left>=right) return arr; //base case
+    [arr[left],arr[right]] = [arr[right],arr[left]]
+    return reverseArrayInPlace(arr,left+1,right-1)
+}
+
+console.log(reverseArrayInPlace([1,2,3,4,5]))
 
 
 
@@ -654,7 +723,7 @@ console.log(mapArray);
  * NON DESTRUCTIVE ARRAY METHODS ******************
  **************************************************/
 //sort, reverse, splice
-const names = ['john', 'mark', 'arun', 'merry', 'bob', 'chris'];
+/* const names = ['john', 'mark', 'arun', 'merry', 'bob', 'chris'];
 
 const sorted = names.toSpliced(1, 2);
 
@@ -668,4 +737,214 @@ console.log(names);
 const element =names.findLastIndex((elem) => {
     return elem.length === 4;
 });
-console.log(element);
+console.log(element); */
+
+/**************************************************
+ * Getting Keys, Values, and Entries ******************
+ **************************************************/
+
+// Object.keys(obj) returns an array of keys.
+
+// Object.values(obj) returns an array of values.
+
+// Object.entries(obj) returns an array of [key, value] pairs.
+
+/* const user = { id: 1, name: "Nila", role: "admin" };
+
+console.log(Object.keys(user));   // ["id", "name", "role"]
+console.log(Object.values(user)); // [1, "Nila", "admin"]
+console.log(Object.entries(user));// [["id",1],["name","Nila"],["role","admin"]] */
+
+
+/**************************************************
+ * Creating from Entries ******************
+ **************************************************/
+
+// Object.fromEntries(arr) converts [key, value] pairs back into an object.
+
+/* const entries = [["id", 1], ["name", "Nila"]];
+console.log(Object.fromEntries(entries)); // { id: 1, name: "Nila" } */
+
+
+/**************************************************
+ * Cloning & Merging ******************
+ **************************************************/
+
+// Object.assign(target, ...sources) copies properties into target object (shallow copy).
+
+/* const a = { x: 1 };
+const b = { y: 2 };
+const merged = Object.assign({}, a, b);
+console.log(merged); // { x: 1, y: 2 } */
+
+
+//Spread operator (modern alternative):
+
+/* const merged2 = { ...a, ...b }; */
+
+
+/**************************************************
+ * Sealing & Freezing ******************
+ **************************************************/
+
+// Object.freeze(obj) makes object immutable (no add/remove/change).
+
+// Object.seal(obj) prevents adding/removing keys, but allows changing existing values.
+
+/* const user = { name: "Nila" };
+
+Object.freeze(user);
+user.name = "Vinoth"; // ignored
+
+Object.seal(user);
+user.age = 30;        // ignored
+user.name = "Nila2";  // allowed */
+
+
+/**************************************************
+ * Property Descriptors ******************
+ **************************************************/
+
+// Object.getOwnPropertyDescriptor(obj, key)  details about a property.
+
+// Object.defineProperty(obj, key, descriptor)  custom property behavior.
+
+/* const user = { name: "Nila" };
+console.log(Object.getOwnPropertyDescriptor(user, "name")); */
+/* 
+{
+  value: "Nila",
+  writable: true,
+  enumerable: true,
+  configurable: true
+}
+*/
+
+
+/**************************************************
+ * Prototype Methods ******************
+ **************************************************/
+
+// Object.create(proto) creates a new object with a given prototype.
+
+// Object.getPrototypeOf(obj)  gets prototype.
+
+// Object.setPrototypeOf(obj, proto)  sets prototype.
+
+/* const animal = { eats: true };
+const dog = Object.create(animal);
+dog.bark = true;
+
+console.log(dog.eats); // true (inherited from animal) */
+
+
+/**************************************************
+ * Checking Properties ******************
+ **************************************************/
+
+//obj.hasOwnProperty(key) check if property exists directly on object.
+
+//Object.hasOwn(obj, key) (newer, safer)
+
+/* const user = { name: "Nila" };
+console.log(user.hasOwnProperty("name")); // true
+console.log(Object.hasOwn(user, "name")); // true */
+
+/**************************************************
+ * Pyramid ******************
+ **************************************************/
+
+// const pyramid = function (n) {
+//     let row = ""
+//     for(let i=1;i<=n;i++) {
+//         row = Array(i).fill("*").join(" ")        
+//         document.getElementById("pyramid").insertAdjacentHTML('afterBegin',`<p>${row}</p>`);
+//     }
+// }
+
+// const pyramid = function(n) {
+//     let mid_row = n/2;
+//     let row, spaces = ""
+//     for(let i = 1; i <= n; i++ ) {
+//         let level = i <= mid_row ? i : n - i + 1
+//         spaces = " ".repeat(mid_row - level)
+//         row = Array(level).fill("*").join(" ")
+//         document.getElementById("pyramid").insertAdjacentHTML('beforeEnd',`<pre>${spaces}${row}</pre>`)
+//     }
+// }
+
+// const pyramid = function (n) {
+//   for (let i = 1; i <= n; i++) {
+//     let spaces = " ".repeat(n - i);
+//     let row = Array(i).fill(i).join(" ");
+//     document.getElementById("pyramid")
+//       .insertAdjacentHTML('beforeend', `<pre>${spaces}${row}</pre>`);
+//   }
+// }
+
+// const pyramid = function (n) {
+//   for (let i = 1; i <= n; i++) {
+//     let spaces = " ".repeat(n - i);
+//     let row = Array.from({length: i}, (_, j) => j + 1).join(" ");
+//     // let row = Array(i).fill().map((_, j) => j + 1).join(" ");
+//     document.getElementById("pyramid")
+//       .insertAdjacentHTML('beforeend', `<pre>${spaces}${row}</pre>`);
+//   }
+// }
+
+const pyramid = function (n) {
+    let mid_row = n / 2;
+  for (let i = 1; i <= n; i++) {
+    let level = i <= mid_row ? i : n - i + 1
+    let spaces = " ".repeat(n - level);
+    let row = Array.from({length: level}, (_, j) => i).join(" ");
+    // let row = Array(i).fill().map((_, j) => i).join(" ");
+    document.getElementById("pyramid")
+      .insertAdjacentHTML('beforeend', `<pre>${spaces}${row}</pre>`);
+  }
+}
+
+pyramid(10)
+
+// stopwatch
+
+let time = 0;
+let timer = null;
+let counter = null;
+
+function formatTimer(seconds){
+    let min = Math.floor(seconds / 60)
+    let sec = seconds % 60
+    return `${min}:${sec < 10 ? "0": ""}${sec}`
+}
+
+function start() {
+    if(timer) return
+    timer = setInterval(()=> {
+        time++
+        document.getElementById("stopwatch").innerText = formatTimer(time)
+    },1000)
+}
+
+function stop() {
+    clearInterval(timer)
+    timer = null    
+}
+
+function reset(){
+    stop()
+    time = 0
+    document.getElementById("stopwatch").innerText = "0:00"
+}
+
+//counter
+function startCounter(min) {    
+    clearInterval(counter)
+    let time = 5*60 // convert 5min to seconds
+    counter = setInterval(()=> {
+        time--
+        if(time<=0)
+           return document.getElementById("counter").innerText = 'Time Up!'
+        document.getElementById("counter").innerText = formatTimer(time)
+    },1000)
+}
